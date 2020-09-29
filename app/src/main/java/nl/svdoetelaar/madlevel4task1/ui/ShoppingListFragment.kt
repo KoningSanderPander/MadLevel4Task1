@@ -111,8 +111,8 @@ class ShoppingListFragment : Fragment() {
         if (validateFields(productName, amount)) {
             mainScope.launch {
                 val product = Product(
-                    productName.text.toString(),
-                    amount.text.toString().toLong()
+                    productName = productName.text.toString(),
+                    quantity = amount.text.toString().toLong()
                 )
 
                 withContext(Dispatchers.IO) {
