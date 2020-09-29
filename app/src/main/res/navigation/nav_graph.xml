@@ -2,7 +2,13 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/shoppingListFragment">
 
 
+    <fragment
+        android:id="@+id/shoppingListFragment"
+        android:name="nl.svdoetelaar.madlevel4task1.ui.ShoppingListFragment"
+        android:label="fragment_shopping_list"
+        tools:layout="@layout/fragment_shopping_list" />
 </navigation>

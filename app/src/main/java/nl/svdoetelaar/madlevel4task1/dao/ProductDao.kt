@@ -1,6 +1,5 @@
 package nl.svdoetelaar.madlevel4task1.dao
 
-import androidx.navigation.NavDeepLinkDsl
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -19,7 +18,7 @@ interface ProductDao {
     @Delete
     suspend fun deleteProduct(product: Product)
 
-    @Query ("DELETE FROM product")
+    @Query("DELETE FROM product")
     suspend fun deleteAllProducts()
 
 }
