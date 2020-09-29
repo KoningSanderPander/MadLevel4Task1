@@ -28,15 +28,15 @@ import nl.svdoetelaar.madlevel4task1.repository.ProductRepository
  */
 class ShoppingListFragment : Fragment() {
 
-    private lateinit var productRepository: ProductRepository
-    private lateinit var binding: FragmentShoppingListBinding
-
-    private val mainScope = CoroutineScope(Dispatchers.Main)
-
     private val products = arrayListOf<Product>()
     private val productAdapter = ProductAdapter(products)
 
+    private lateinit var productRepository: ProductRepository
+    private val mainScope = CoroutineScope(Dispatchers.Main)
+
     private lateinit var viewManager: RecyclerView.LayoutManager
+
+    private lateinit var binding: FragmentShoppingListBinding
 
 
     override fun onCreateView(
@@ -54,6 +54,7 @@ class ShoppingListFragment : Fragment() {
         getShoppingListFromDatabase()
 
         initRv()
+
         binding.fabAddItem.setOnClickListener {
             showAddProductDialog()
         }
@@ -87,8 +88,8 @@ class ShoppingListFragment : Fragment() {
             }
             this@ShoppingListFragment.products.clear()
             this@ShoppingListFragment.products.addAll(products)
+            this@ShoppingListFragment.productAdapter.notifyDataSetChanged()
         }
-        this@ShoppingListFragment.productAdapter.notifyDataSetChanged()
     }
 
     @SuppressLint("InflateParams")
@@ -163,8 +164,8 @@ class ShoppingListFragment : Fragment() {
                     withContext(Dispatchers.IO) {
                         productRepository.deleteProduct(products[position])
                     }
+                    getShoppingListFromDatabase()
                 }
-                this@ShoppingListFragment.productAdapter.notifyDataSetChanged()
             }
         }
         return ItemTouchHelper(callback)
